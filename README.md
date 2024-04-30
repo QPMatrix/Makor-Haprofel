@@ -1,4 +1,6 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Makor Haprofel App
+
+This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli). This application is designed to manage alumni networks and facilitate communication between members.
 
 # Getting Started
 
@@ -57,7 +59,7 @@ Now that you have successfully run the app, let's modify it.
 
 ## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
+You've successfully run and modified your Alumniem App. :partying_face:
 
 ### Now what?
 
@@ -77,3 +79,7 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+# PDF Generation
+
+This app uses the `react-native-pdf` library to generate PDFs. To use this feature, follow the instructions in the [react-native-pdf documentation](https://github.com/wonday/react-native-pdf).

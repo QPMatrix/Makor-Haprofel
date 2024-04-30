@@ -468,8 +468,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79XQ7C922B;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MakorHaprofel/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "מקור הפרופיל";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -495,7 +498,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79XQ7C922B;
 				INFOPLIST_FILE = MakorHaprofel/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "מקור הפרופיל";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
