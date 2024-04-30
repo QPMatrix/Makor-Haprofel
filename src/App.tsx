@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/home';
 import WelcomeScreen from './screens/welcome';
 import {getUserDetails} from './lib/async-storage';
+import CategoryDetails from './screens/category-details';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,11 @@ function App() {
         <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="CategoryDetails"
+          component={CategoryDetails}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

@@ -17,6 +17,7 @@ import {
 import {getUserDetails, setUserDetails} from '../lib/async-storage';
 import {I18nManager} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import Footer from '../components/footer';
 
 const WelcomeScreen = () => {
   const insets = useSafeAreaInsets();
@@ -84,9 +85,9 @@ const WelcomeScreen = () => {
             להתחלה
           </Button>
           <Spacer />
-          <Text color={'gray.800'}>Powered By QPMatrix</Text>
         </VStack>
       </View>
+      <Footer />
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
