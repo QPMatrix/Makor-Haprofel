@@ -14,13 +14,24 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CategoryList from '../components/catgeory-list';
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 const CategoryScreen = () => {
   const route = useRoute();
-  const navigation = useNavigation();
+  console.log(route.params);
   return (
     <NativeBaseProvider>
-      <CategoryList />
+      <CategoryList
+        title={
+          //@ts-ignore
+
+          route.params?.title
+        }
+        id={
+          //@ts-ignore
+          route.params?.type
+        }
+      />
     </NativeBaseProvider>
   );
 };

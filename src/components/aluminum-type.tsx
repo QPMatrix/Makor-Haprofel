@@ -48,7 +48,7 @@ const AluminumType = () => {
                 //@ts-ignore
                 navigate.navigate('Category', {
                   title: item.type_name,
-                  type: item.type_id,
+                  type: item.id,
                 })
               }
               style={{
