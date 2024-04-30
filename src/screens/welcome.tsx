@@ -1,6 +1,7 @@
 import {ImageBackground, Dimensions, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {
+  Alert,
   Box,
   Button,
   Center,
@@ -12,11 +13,33 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Footer from '../components/footer';
+import Loader from '../components/loader';
+import {createUser} from '../services/user';
+import {useNavigation} from '@react-navigation/native';
 
 const WelcomeScreen = () => {
-  const insets = useSafeAreaInsets();
+  const [name, setName] = useState('');
+  const [phone, setPhoneNumber] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigation();
+  const handleSubmit = async () => {
+    try {
+      setIsLoading(true);
+      const res = await createUser(name, phone);
+      if (res) {
+        setIsLoading(false);
+        //@ts-ignore
+        navigate.navigate('Home');
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <ScrollView
@@ -69,13 +92,18 @@ const WelcomeScreen = () => {
                 <FormControl.Label fontWeight="medium" fontSize="lg">
                   שמ מלא או שמ העסק
                 </FormControl.Label>
-                <Input maxWidth={'400px'} rounded="full" />
+                <Input
+                  maxWidth={'400px'}
+                  rounded="full"
+                  onChangeText={text => setName(text)}
+                />
                 <FormControl.Label>מספר טלפון</FormControl.Label>
                 <Input
                   type="text"
                   inputMode="tel"
                   maxWidth={'400px'}
                   rounded="full"
+                  onChangeText={text => setPhoneNumber(text)}
                 />
               </FormControl>
             </VStack>
@@ -86,9 +114,7 @@ const WelcomeScreen = () => {
                 bg="blue.500"
                 width="90%"
                 borderRadius={20}
-                onPress={() => {
-                  console.log('pressed');
-                }}>
+                onPress={() => handleSubmit()}>
                 התחל
               </Button>
             </Center>

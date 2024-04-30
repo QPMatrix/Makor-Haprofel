@@ -7,14 +7,16 @@ import {
   NativeBaseProvider,
   Text,
 } from 'native-base';
-import {Linking} from 'react-native';
+import {I18nManager, Linking} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Footer = () => {
+  I18nManager.forceRTL(true);
   const insets = useSafeAreaInsets();
   return (
     <NativeBaseProvider>
       <HStack
+        mt="10"
         alignItems="center"
         alignContent="center"
         flex={1}
@@ -23,7 +25,6 @@ const Footer = () => {
           Powered by QPMatrix
         </Text>
         <Image
-          onProgress={() => Linking.openURL('https://www.qpmatrix.tech')}
           source={require('../assets/QPMatrix.png')}
           alt="logo"
           ml="2"
