@@ -8,7 +8,9 @@ import {
   NativeBaseProvider,
 } from 'native-base';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/AntDesign';
+import FIcon from 'react-native-vector-icons/Ionicons';
+
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Header = ({title}: {title: string}) => {
@@ -18,20 +20,26 @@ const Header = ({title}: {title: string}) => {
   return (
     <>
       <Box paddingTop={insets.top} />
-      <HStack px={1} py={3} justifyContent="space-between">
+      <HStack
+        px={1}
+        py={3}
+        justifyContent="space-around"
+        alignContent="center"
+        alignItems="center">
+        <IconButton icon={<Icon name="shoppingcart" size={24} />} />
         <Text color="black" fontSize={20} fontWeight="bold">
           {title}
         </Text>
         {route.name !== 'Home' && (
           <IconButton
             pl={4}
-            icon={<Icon name="arrow-left" size={20} />}
+            icon={<FIcon name="arrow-back" size={24} />}
             _icon={{color: 'black'}}
             onPress={() => navigation.goBack()}
           />
         )}
       </HStack>
-      <Divider />
+      <Divider shadow={9} />
     </>
   );
 };

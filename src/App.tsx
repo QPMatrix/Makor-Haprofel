@@ -23,7 +23,7 @@ function App() {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="CategoryDetails"
+            name="Category"
             component={CategoryScreen}
             options={{headerShown: false}}
           />

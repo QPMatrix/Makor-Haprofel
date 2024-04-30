@@ -1,5 +1,5 @@
 import {ImageBackground, Dimensions, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Alert,
   Box,
@@ -17,12 +17,25 @@ import Footer from '../components/footer';
 import Loader from '../components/loader';
 import {createUser} from '../services/user';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WelcomeScreen = () => {
   const [name, setName] = useState('');
   const [phone, setPhoneNumber] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigation();
+  useEffect(() => {
+    const checkUser = async () => {
+      setIsLoading(true);
+      const user = await AsyncStorage.getItem('user');
+      if (user) {
+        //@ts-ignore
+        navigate.navigate('Home');
+        setIsLoading(false);
+      }
+    };
+    checkUser();
+  }, []);
   const handleSubmit = async () => {
     try {
       setIsLoading(true);
