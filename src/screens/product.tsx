@@ -1,24 +1,21 @@
 import React from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
 import {
   Box,
-  Center,
+  Text,
   Divider,
-  Heading,
-  NativeBaseProvider,
   HStack,
   IconButton,
-  Text,
+  NativeBaseProvider,
 } from 'native-base';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import CategoryList from '../components/catgeory-list';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import ProductList from '../components/product-list';
 
-const CategoryDetails = () => {
-  const route = useRoute();
+const ProductScreen = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
+  const route = useRoute();
   return (
     <NativeBaseProvider>
       <Box safeAreaTop />
@@ -26,7 +23,7 @@ const CategoryDetails = () => {
         <Text color="black" fontSize={20} fontWeight="bold">
           {
             //@ts-ignore
-            route.params?.type
+            route.params?.title
           }
         </Text>
         <IconButton
@@ -36,9 +33,9 @@ const CategoryDetails = () => {
         />
       </HStack>
       <Divider mt="2" />
-      <CategoryList />
+      <ProductList />
     </NativeBaseProvider>
   );
 };
 
-export default CategoryDetails;
+export default ProductScreen;
