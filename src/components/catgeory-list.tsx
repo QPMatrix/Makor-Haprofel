@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {
+  Avatar,
   Box,
   Divider,
+  FlatList,
   Heading,
+  HStack,
   NativeBaseProvider,
   ScrollView,
   Skeleton,
@@ -42,48 +45,27 @@ const CategoryList = ({title, id}: {title: string; id: number}) => {
   return (
     <>
       <Header title={title} />
-      <ScrollView paddingTop={insets.top}>
-        <Box alignItems="center">
-          {isLoading ? (
-            <Skeleton.Text
-              variant="rect"
-              height={20}
-              width="90%"
-              startColor="pink.500"
-              endColor="orange.500"
-            />
-          ) : (
-            Array.isArray(data) &&
-            data.map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => {}}
-                style={{
-                  width: '90%',
-                }}>
-                <Box
-                  w="full"
-                  rounded="lg"
-                  overflow="hidden"
-                  borderColor="coolGray.200"
-                  alignContent="center"
-                  flex={1}
-                  textAlign={'right'}
-                  alignItems={'center'}
-                  mt={4}
-                  borderWidth="2">
-                  <Stack space={4}>
-                    <Heading fontSize="2xl">
-                      <Text>{item.category_name}</Text>
-                    </Heading>
-                  </Stack>
-                </Box>
-              </TouchableOpacity>
-            ))
-          )}
-        </Box>
-      </ScrollView>
-      <Footer />
+      <FlatList
+        paddingTop={insets.top}
+        data={data}
+        renderItem={({item}) => (
+          <Box
+            borderBottomWidth="1"
+            borderColor="muted.800"
+            pl={['0', '4']}
+            pr={['0', '5']}
+            py="2">
+            <TouchableOpacity>
+              <HStack space={[2, 3]} justifyContent={'space-between'}>
+                <Text color="coolGray.600" bold fontSize="lg">
+                  {item.category_name}
+                </Text>
+                <Avatar size="48px" source={require('../assets/logo.png')} />
+              </HStack>
+            </TouchableOpacity>
+          </Box>
+        )}
+      />
     </>
   );
 };

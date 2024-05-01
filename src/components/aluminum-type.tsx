@@ -1,4 +1,14 @@
-import {Box, Heading, ScrollView, Stack, Text, Skeleton} from 'native-base';
+import {
+  Box,
+  Heading,
+  ScrollView,
+  Stack,
+  Text,
+  Skeleton,
+  FlatList,
+  HStack,
+  Avatar,
+} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {I18nManager, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -25,59 +35,39 @@ const AluminumType = () => {
   }, []);
 
   return (
-    <ScrollView
-      paddingTop={insets.top}
-      paddingRight={insets.right}
-      paddingLeft={insets.left}
-      paddingBottom={insets.bottom}>
-      <Box alignItems="center">
-        {isLoading ? (
-          <Skeleton
-            variant="rect"
-            height={20}
-            width="90%"
-            startColor="pink.500"
-            endColor="orange.500"
-          />
-        ) : (
-          Array.isArray(data) &&
-          data.map((item, index) => (
+    <Box safeAreaTop>
+      <FlatList
+        paddingTop={insets.top}
+        data={data}
+        renderItem={({item}) => (
+          <Box
+            borderBottomWidth="1"
+            borderColor="muted.800"
+            pl={['0', '4']}
+            pr={['0', '5']}
+            py="2">
             <TouchableOpacity
-              key={index}
               onPress={() =>
                 //@ts-ignore
                 navigate.navigate('Category', {
                   title: item.type_name,
                   type: item.id,
                 })
-              }
-              style={{
-                width: '90%',
-                alignItems: 'flex-start',
-                flex: 1,
-                justifyContent: 'flex-start',
-              }}>
-              <Box
-                w="full"
-                rounded="lg"
-                overflow="hidden"
-                borderColor="coolGray.200"
-                alignContent="flex-start"
-                flex={1}
-                textAlign={'right'}
-                alignItems={'flex-start'}
-                borderWidth="1">
-                <Stack space={2}>
-                  <Heading fontSize="5xl">
-                    <Text>{item.type_name}</Text>
-                  </Heading>
-                </Stack>
-              </Box>
+              }>
+              <HStack
+                space={[2, 3]}
+                justifyContent={'space-between'}
+                alignItems="center">
+                <Text color="coolGray.600" bold fontSize="xl">
+                  {item.type_name}
+                </Text>
+                <Avatar size="48px" source={require('../assets/logo.png')} />
+              </HStack>
             </TouchableOpacity>
-          ))
+          </Box>
         )}
-      </Box>
-    </ScrollView>
+      />
+    </Box>
   );
 };
 

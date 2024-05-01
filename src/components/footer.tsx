@@ -21,7 +21,7 @@ const Footer = () => {
         alignContent="center"
         flex={1}
         justifyContent="center"
-        paddingBottom={insets.bottom + 4}>
+        paddingBottom={insets.bottom}>
         <Text onPress={() => Linking.openURL('https://www.qpmatrix.tech')}>
           Powered by QPMatrix
         </Text>
