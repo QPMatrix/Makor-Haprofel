@@ -16,24 +16,19 @@ const ProductScreen = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const route = useRoute();
+
   return (
     <NativeBaseProvider>
-      <Box safeAreaTop />
-      <HStack px={1} py={3} justifyContent="space-between" alignItems="center">
-        <Text color="black" fontSize={20} fontWeight="bold">
-          {
-            //@ts-ignore
-            route.params?.title
-          }
-        </Text>
-        <IconButton
-          icon={<Icon name="arrow-left" size={20} />}
-          _icon={{color: 'black'}}
-          onPress={() => navigation.goBack()}
-        />
-      </HStack>
-      <Divider mt="2" />
-      <ProductList />
+      <ProductList
+        title={
+          //@ts-ignore
+          route.params.title
+        }
+        id={
+          //@ts-ignore
+          route.params.type
+        }
+      />
     </NativeBaseProvider>
   );
 };

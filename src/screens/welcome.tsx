@@ -1,4 +1,4 @@
-import {ImageBackground, Dimensions, View} from 'react-native';
+import {ImageBackground, Dimensions, View, I18nManager} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
   Alert,
@@ -24,6 +24,7 @@ const WelcomeScreen = () => {
   const [phone, setPhoneNumber] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigation();
+  I18nManager.forceRTL(true);
   useEffect(() => {
     const checkUser = async () => {
       setIsLoading(true);
@@ -31,6 +32,8 @@ const WelcomeScreen = () => {
       if (user) {
         //@ts-ignore
         navigate.navigate('Home');
+        setIsLoading(false);
+      } else {
         setIsLoading(false);
       }
     };

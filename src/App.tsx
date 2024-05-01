@@ -28,7 +28,7 @@ function App() {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="ProductList"
+            name="Products"
             component={ProductScreen}
             options={{headerShown: false}}
           />

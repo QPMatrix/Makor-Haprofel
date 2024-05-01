@@ -1,25 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Avatar,
-  Box,
-  Divider,
-  FlatList,
-  Heading,
-  HStack,
-  NativeBaseProvider,
-  ScrollView,
-  Skeleton,
-  Stack,
-  Text,
-  VStack,
-} from 'native-base';
+import {Avatar, Box, FlatList, HStack, Text} from 'native-base';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import Footer from './footer';
 import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Header from './header';
 import {getCategory} from '../services/category';
 import Loader from './loader';
+import {View} from 'react-native';
+import Footer from './footer';
 
 const CategoryList = ({title, id}: {title: string; id: number}) => {
   const insets = useSafeAreaInsets();
@@ -38,7 +26,6 @@ const CategoryList = ({title, id}: {title: string; id: number}) => {
     };
     fetchCategory();
   }, [id]);
-  console.log(data);
   if (isLoading) {
     return <Loader />;
   }
@@ -46,16 +33,31 @@ const CategoryList = ({title, id}: {title: string; id: number}) => {
     <>
       <Header title={title} />
       <FlatList
-        paddingTop={insets.top}
+        contentContainerStyle={{
+          paddingBottom: insets.bottom + 20,
+          paddingHorizontal: 5,
+          paddingRight: insets.right,
+          paddingLeft: insets.left,
+        }}
         data={data}
         renderItem={({item}) => (
           <Box
             borderBottomWidth="1"
             borderColor="muted.800"
+            safeAreaBottom
+            paddingBottom={insets.bottom}
             pl={['0', '4']}
             pr={['0', '5']}
+            px="5"
             py="2">
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                //@ts-ignore
+                navigation.navigate('Products', {
+                  title: item.category_name,
+                  type: item.id,
+                })
+              }>
               <HStack space={[2, 3]} justifyContent={'space-between'}>
                 <Text color="coolGray.600" bold fontSize="lg">
                   {item.category_name}
