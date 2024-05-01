@@ -27,7 +27,10 @@ const Header = ({title}: {title: string}) => {
         alignContent="center"
         alignItems="center">
         <IconButton icon={<Icon name="shoppingcart" size={24} />} />
-        <Text color="black" fontSize={20} fontWeight="bold">
+        <Text
+          color="black"
+          fontSize={title.length > 8 ? 15 : 20}
+          fontWeight="bold">
           {title}
         </Text>
         {route.name !== 'Home' && (

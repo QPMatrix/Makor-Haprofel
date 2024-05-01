@@ -57,29 +57,36 @@ const ProductList = ({title, id}: {title: string; id: number}) => {
             px="4"
             pr={['0', '5']}
             py="4">
-            <HStack
-              space={[2, 3]}
-              justifyContent="space-around"
-              alignItems="center">
-              <Image
-                size="sm"
-                alt="product image"
-                source={{
-                  uri: item.image_url,
-                }}
-              />
-              <VStack>
-                <Text color="coolGray.800" bold ml="2">
-                  {item.name}
-                </Text>
-                <Text color="coolGray.600" ml="2" textAlign="right">
-                  מספר מקור הפרופיל: {item.mkbr}
-                </Text>
-                <Text color="coolGray.600" ml="2" textAlign="right">
-                  מספר קליל: {item.kbr}
-                </Text>
-              </VStack>
-            </HStack>
+            <TouchableOpacity
+              onPress={() =>
+                //@ts-ignore
+                navigation.navigate('Product', {title: item.name, id: item.id})
+              }>
+              <HStack
+                space={[2, 3]}
+                justifyContent="space-around"
+                alignItems="center">
+                <Image
+                  size="sm"
+                  alt="product image"
+                  source={{
+                    uri: item.image_url,
+                  }}
+                />
+
+                <VStack>
+                  <Text color="coolGray.800" bold ml="2">
+                    {item.name}
+                  </Text>
+                  <Text color="coolGray.600" ml="2" textAlign="right">
+                    מספר מקור הפרופיל: {item.mkbr}
+                  </Text>
+                  <Text color="coolGray.600" ml="2" textAlign="right">
+                    מספר קליל: {item.kbr}
+                  </Text>
+                </VStack>
+              </HStack>
+            </TouchableOpacity>
           </Box>
         )}
       />

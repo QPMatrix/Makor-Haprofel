@@ -16,3 +16,20 @@ export const getProducts = async (id: number) => {
     console.log(error);
   }
 };
+export const getProductById = async (id: number) => {
+  try {
+    const {data, error} = await supabase
+      .from('products')
+      .select('*')
+      .eq('id', id);
+    console.log(data);
+    if (error) {
+      console.log(error);
+    }
+    if (data) {
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

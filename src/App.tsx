@@ -6,6 +6,7 @@ import WelcomeScreen from './screens/welcome';
 import ProductScreen from './screens/product';
 import CategoryScreen from './screens/category';
 import {NativeBaseProvider} from 'native-base';
+import ProductInfoScreen from './screens/product-info';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
           <Stack.Screen
             name="Products"
             component={ProductScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Product"
+            component={ProductInfoScreen}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
