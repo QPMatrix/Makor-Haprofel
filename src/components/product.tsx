@@ -11,13 +11,16 @@ import {
   Image,
   ScrollView,
   Text,
+  useToast,
   View,
   VStack,
 } from 'native-base';
+import {addToCart} from '../services/cart';
 
 const Product = ({title, id}: {title: string; id: number}) => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -37,6 +40,16 @@ const Product = ({title, id}: {title: string; id: number}) => {
   if (isLoading || data.length === 0) {
     return <Loader />;
   }
+  const handleAddingToCart = async () => {
+    try {
+      const res = await addToCart(data);
+      if (res) {
+        toast.show({variant: 'subtle', description: 'המוצר הוסף לסל'});
+      } else {
+        toast.show({variant: 'subtle', title: 'נא לנסה שוף'});
+      }
+    } catch (error) {}
+  };
   return (
     <>
       <Header title={title} />
@@ -75,6 +88,7 @@ const Product = ({title, id}: {title: string; id: number}) => {
               m="auto"
               mt="10"
               variant="outline"
+              onPress={() => handleAddingToCart()}
               leftIcon={<AddIcon />}>
               הוסיף להזמנה
             </Button>
