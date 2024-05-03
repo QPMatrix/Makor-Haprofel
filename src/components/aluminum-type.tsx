@@ -26,7 +26,6 @@ const AluminumType = () => {
       setIsLoading(true);
       const res = await getType();
       if (res) {
-        console.log(res);
         setData(res);
       }
       setIsLoading(false);

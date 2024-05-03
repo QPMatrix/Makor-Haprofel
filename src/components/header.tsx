@@ -26,7 +26,16 @@ const Header = ({title}: {title: string}) => {
         justifyContent="space-around"
         alignContent="center"
         alignItems="center">
-        <IconButton icon={<Icon name="shoppingcart" size={24} />} />
+        {route.name !== 'Cart' && (
+          <IconButton
+            onPress={() =>
+              //@ts-ignore
+              navigation.navigate('Cart')
+            }
+            icon={<Icon name="shoppingcart" size={24} />}
+          />
+        )}
+
         <Text
           color="black"
           fontSize={title.length > 8 ? 15 : 20}

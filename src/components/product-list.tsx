@@ -33,7 +33,6 @@ const ProductList = ({title, id}: {title: string; id: number}) => {
     };
     fetchCategory();
   }, [id]);
-  console.log(data);
   if (isLoading) {
     return <Loader />;
   }

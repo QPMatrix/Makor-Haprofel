@@ -7,6 +7,9 @@ import ProductScreen from './screens/product';
 import CategoryScreen from './screens/category';
 import {NativeBaseProvider} from 'native-base';
 import ProductInfoScreen from './screens/product-info';
+import CartScreen from './screens/cart';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import PdfScreen from './screens/pdf-screen';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -36,6 +39,16 @@ function App() {
           <Stack.Screen
             name="Product"
             component={ProductInfoScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Cart"
+            component={CartScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Pdf"
+            component={PdfScreen}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

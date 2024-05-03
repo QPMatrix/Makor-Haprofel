@@ -22,7 +22,6 @@ export const getProductById = async (id: number) => {
       .from('products')
       .select('*')
       .eq('id', id);
-    console.log(data);
     if (error) {
       console.log(error);
     }
