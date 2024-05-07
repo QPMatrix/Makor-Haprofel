@@ -31,7 +31,7 @@ const WelcomeScreen = () => {
       const user = await AsyncStorage.getItem('user');
       if (user) {
         //@ts-ignore
-        navigate.navigate('Home');
+        navigate.navigate('Main');
         setIsLoading(false);
       } else {
         setIsLoading(false);

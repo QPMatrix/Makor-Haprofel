@@ -13,6 +13,7 @@ import PdfScreen from './screens/pdf-screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+AsyncStorage.clear();
 function MyTabs() {
   return (
     <Tab.Navigator>
@@ -20,11 +21,6 @@ function MyTabs() {
         name="Home"
         component={HomeScreen}
         options={{title: 'קטיגרות אלומנום'}}
-      />
-      <Tab.Screen
-        name="Orders"
-        component={CartScreen}
-        options={{title: 'הזמנות קדמות'}}
       />
       <Tab.Screen
         name="Settings"

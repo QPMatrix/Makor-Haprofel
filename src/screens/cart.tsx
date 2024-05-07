@@ -111,7 +111,13 @@ const CartScreen = () => {
               </Box>
             ))}
             <Box width="100%" height="300px" bottom="0" flex={'1'}>
-              <Button colorScheme="success" borderRadius="full">
+              <Button
+                colorScheme="success"
+                borderRadius="full"
+                onPress={() =>
+                  //@ts-ignore
+                  navigation.navigate('Pdf')
+                }>
                 הוציא הזמנה
               </Button>
             </Box>

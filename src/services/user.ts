@@ -6,6 +6,7 @@ export const createUser = async (name: string, phoneNumber: string) => {
     const existingUser = await getUser(phoneNumber);
     if (existingUser) {
       console.log('User already exists');
+
       return true;
     }
     const {data, error} = await supabase

@@ -20,8 +20,6 @@ export const addToCart = async (item: any): Promise<boolean> => {
     if (itemIndex > -1) {
       // If the item exists in the cart, increment the quantity and update the kg6m and kgm values
       cart[itemIndex].quantity += 1;
-      cart[itemIndex].kg6m += item.kg6m;
-      cart[itemIndex].kgm += item.kgm;
     } else {
       // If the item does not exist in the cart, add it with a quantity of 1
       cart.push({...item, quantity: 1, kg6m: item.kg6m, kgm: item.kgm});
@@ -51,9 +49,6 @@ export const removeItemFromCart = async (itemId: number): Promise<boolean> => {
       if (cart[itemIndex].quantity > 1) {
         // If the item's quantity is more than 1, decrease it by 1
         cart[itemIndex].quantity -= 1;
-        // Subtract the kg6m and kgm of a single item
-        cart[itemIndex].kg6m = cart[itemIndex].kg6m / cart[itemIndex].quantity;
-        cart[itemIndex].kgm = cart[itemIndex].kgm / cart[itemIndex].quantity;
       } else {
         // If the item's quantity is 1, remove it from the cart
         cart = cart.filter(cartItem => cartItem.id !== itemId);
