@@ -39,8 +39,8 @@ export const getUser = async (phoneNumber: string) => {
       console.error('Error getting user:', error);
       throw error;
     }
-    if (data.length > 0) {
-      await AsyncStorage.setItem('user', JSON.stringify(data));
+    if (data && data.length > 0) {
+      await AsyncStorage.setItem('user', JSON.stringify(data[0]));
       console.log('User retrieved and stored in AsyncStorage');
       return true;
     }

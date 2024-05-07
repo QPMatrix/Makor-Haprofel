@@ -8,12 +8,11 @@ import CategoryScreen from './screens/category';
 import {NativeBaseProvider} from 'native-base';
 import ProductInfoScreen from './screens/product-info';
 import CartScreen from './screens/cart';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import PdfScreen from './screens/pdf-screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-AsyncStorage.clear();
 function MyTabs() {
   return (
     <Tab.Navigator>
