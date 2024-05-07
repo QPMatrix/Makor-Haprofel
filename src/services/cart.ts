@@ -13,6 +13,7 @@ export const addToCart = async (item: any): Promise<boolean> => {
     }
 
     // Find the index of the item in the cart
+    //@ts-ignore
     const itemIndex = cart.findIndex(cartItem => cartItem.id === item.id);
 
     console.log('Item index:', itemIndex);
@@ -43,6 +44,7 @@ export const removeItemFromCart = async (itemId: number): Promise<boolean> => {
     console.log('Existing cart:', cart);
 
     // Find the index of the item in the cart
+    //@ts-ignore
     const itemIndex = cart.findIndex(cartItem => cartItem.id === itemId);
 
     if (itemIndex > -1) {
@@ -51,6 +53,7 @@ export const removeItemFromCart = async (itemId: number): Promise<boolean> => {
         cart[itemIndex].quantity -= 1;
       } else {
         // If the item's quantity is 1, remove it from the cart
+        //@ts-ignore
         cart = cart.filter(cartItem => cartItem.id !== itemId);
       }
     }
