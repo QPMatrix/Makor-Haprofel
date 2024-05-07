@@ -46,7 +46,7 @@ const WelcomeScreen = () => {
       if (res) {
         setIsLoading(false);
         //@ts-ignore
-        navigate.navigate('Home');
+        navigate.navigate('Main');
       }
     } catch (error) {
       setIsLoading(false);

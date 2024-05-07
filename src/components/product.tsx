@@ -16,10 +16,12 @@ import {
   VStack,
 } from 'native-base';
 import {addToCart} from '../services/cart';
+import AddToCartModal from './add-to-cart-modal';
 
 const Product = ({title, id}: {title: string; id: number}) => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const toast = useToast();
   useEffect(() => {
     const fetchData = async () => {

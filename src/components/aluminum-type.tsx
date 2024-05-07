@@ -14,6 +14,8 @@ import {I18nManager, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {getType} from '../services/type';
 import {useNavigation} from '@react-navigation/native';
+import Loader from './loader';
+import Footer from './footer';
 
 const AluminumType = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +34,9 @@ const AluminumType = () => {
     };
     fetchData();
   }, []);
-
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <Box safeAreaTop>
       <FlatList

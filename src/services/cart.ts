@@ -52,8 +52,8 @@ export const removeItemFromCart = async (itemId: number): Promise<boolean> => {
         // If the item's quantity is more than 1, decrease it by 1
         cart[itemIndex].quantity -= 1;
         // Subtract the kg6m and kgm of a single item
-        cart[itemIndex].kg6m = cart[itemIndex].kg6m - cart[itemIndex].kg6m;
-        cart[itemIndex].kgm = cart[itemIndex].kgm - cart[itemIndex].kg6m;
+        cart[itemIndex].kg6m = cart[itemIndex].kg6m / cart[itemIndex].quantity;
+        cart[itemIndex].kgm = cart[itemIndex].kgm / cart[itemIndex].quantity;
       } else {
         // If the item's quantity is 1, remove it from the cart
         cart = cart.filter(cartItem => cartItem.id !== itemId);

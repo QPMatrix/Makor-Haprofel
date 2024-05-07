@@ -18,7 +18,6 @@ import Footer from '../components/footer';
 
 const CategoryScreen = () => {
   const route = useRoute();
-  console.log(route.params);
   return (
     <NativeBaseProvider>
       <CategoryList

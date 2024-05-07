@@ -8,9 +8,7 @@ import Footer from '../components/footer';
 const HomeScreen = () => {
   return (
     <NativeBaseProvider>
-      <Header title="קטיגרות אלומניום" />
       <AluminumType />
-      <Footer />
     </NativeBaseProvider>
   );
 };
