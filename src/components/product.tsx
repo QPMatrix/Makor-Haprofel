@@ -6,9 +6,11 @@ import {
   AddIcon,
   Box,
   Button,
+  Divider,
   HStack,
   IconButton,
   Image,
+  Input,
   ScrollView,
   Text,
   useToast,
@@ -84,7 +86,10 @@ const Product = ({title, id}: {title: string; id: number}) => {
                   </Text>
                 </HStack>
               </VStack>
+              <Divider my="4" />
+              <VStack></VStack>
             </Box>
+
             <Button
               w="90%"
               m="auto"

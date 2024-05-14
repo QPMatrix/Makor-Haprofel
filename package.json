@@ -31,6 +31,7 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "^3.31.1",
     "react-native-share": "^10.2.0",
+    "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "12.1.1",
     "react-native-url-polyfill": "^2.0.0",
     "react-native-vector-icons": "^10.0.3"
@@ -54,5 +55,6 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }

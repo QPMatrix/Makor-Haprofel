@@ -1,4 +1,11 @@
-import {ImageBackground, Dimensions, View, I18nManager} from 'react-native';
+import {
+  ImageBackground,
+  Dimensions,
+  View,
+  I18nManager,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
   Alert,
@@ -57,7 +64,9 @@ const WelcomeScreen = () => {
     return <Loader />;
   }
   return (
-    <>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{flex: 1}}>
       <ScrollView
         flex={1}
         backgroundColor={'white'}
@@ -138,7 +147,7 @@ const WelcomeScreen = () => {
         </View>
         <Footer />
       </ScrollView>
-    </>
+    </KeyboardAvoidingView>
   );
 };
 

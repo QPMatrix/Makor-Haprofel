@@ -95,14 +95,14 @@ const PdfScreen = () => {
         <table>
           <thead>
             <tr>
-              <th>מספר</th>
-              <th>Kg/6m</th>
-              <th>Kg/m</th>
-              <th>מספר מקור הפרופיל</th>
-              <th>תמונה הפרופיל</th>
-              <th>מספר קליל</th>
-              <th>שם פרופילם בעברית</th>
-              <th>כמות</th>
+            <th>Kg/6m</th>
+            <th>Kg/m</th>
+            <th>מספר מקור הפרופיל</th>
+            <th>תמונה הפרופיל</th>
+            <th>מספר קליל</th>
+            <th>שם פרופילם בעברית</th>
+            <th>כמות</th>
+            <th>מספר</th>
             </tr>
           </thead>
           <tbody>

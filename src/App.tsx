@@ -10,21 +10,46 @@ import ProductInfoScreen from './screens/product-info';
 import CartScreen from './screens/cart';
 import PdfScreen from './screens/pdf-screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{title: 'קטיגרות אלומנום'}}
-      />
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          if (route.name === 'Home') {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Settings') {
+            iconName = focused ? 'settings' : 'settings-outline';
+          } else {
+            iconName = 'question'; // default icon
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}>
       <Tab.Screen
         name="Settings"
         component={CartScreen}
-        options={{title: 'הגדרות'}}
+        options={{
+          title: 'הגדרות',
+          tabBarActiveTintColor: 'black',
+          tabBarInactiveTintColor: 'gray',
+        }}
+      />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: 'קטיגרות אלומנום',
+          tabBarActiveTintColor: 'black',
+          tabBarInactiveTintColor: 'gray',
+        }}
       />
     </Tab.Navigator>
   );
