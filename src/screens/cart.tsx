@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {
   Box,
   Button,
-  DeleteIcon,
   MinusIcon,
   HStack,
   Image,
@@ -11,22 +10,20 @@ import {
   Text,
   VStack,
   Center,
-  Flex,
-  Spacer,
   AspectRatio,
-  Badge,
-  Divider,
+  View,
 } from 'native-base';
 import Header from '../components/header';
 import {getCart, removeItemFromCart} from '../services/cart';
 import {useNavigation} from '@react-navigation/native';
 import Loader from '../components/loader';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const CartScreen = () => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
-
+  const insets = useSafeAreaInsets();
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -91,13 +88,14 @@ const CartScreen = () => {
                   <Text>KGM: {item.kgm}</Text>
                   <Text>KG6M: {item.kg6m}</Text>
                 </HStack>
-                <Text
-                  flex="1"
-                  alignItems="center"
-                  justifyContent="center"
-                  margin="auto">
-                  כמות:{item.quantity}
-                </Text>
+                <HStack
+                  space={4}
+                  marginTop="2"
+                  justifyContent={'space-around'}
+                  alignItems={'center'}>
+                  <Text>צבע: {item.color}</Text>
+                  <Text>כמות: {item.quantity}</Text>
+                </HStack>
                 <Center alignItems="center" marginTop="4">
                   <Button
                     leftIcon={<MinusIcon size="sm" />}
@@ -110,17 +108,6 @@ const CartScreen = () => {
                 </Center>
               </Box>
             ))}
-            <Box width="100%" height="300px" bottom="0" flex={'1'}>
-              <Button
-                colorScheme="success"
-                borderRadius="full"
-                onPress={() =>
-                  //@ts-ignore
-                  navigation.navigate('Pdf')
-                }>
-                הוציא הזמנה
-              </Button>
-            </Box>
           </VStack>
         ) : (
           <Center flex={1}>
@@ -128,6 +115,22 @@ const CartScreen = () => {
           </Center>
         )}
       </ScrollView>
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+          paddingBottom: insets.bottom,
+        }}>
+        <Button
+          colorScheme="success"
+          onPress={() =>
+            //@ts-ignore
+            navigation.navigate('Pdf')
+          }>
+          הוציא הזמנה
+        </Button>
+      </View>
     </NativeBaseProvider>
   );
 };
