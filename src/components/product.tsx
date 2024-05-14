@@ -7,10 +7,12 @@ import {
   Box,
   Button,
   Divider,
+  FormControl,
   HStack,
   IconButton,
   Image,
   Input,
+  KeyboardAvoidingView,
   ScrollView,
   Text,
   useToast,
@@ -18,12 +20,13 @@ import {
   VStack,
 } from 'native-base';
 import {addToCart} from '../services/cart';
-import AddToCartModal from './add-to-cart-modal';
 
 const Product = ({title, id}: {title: string; id: number}) => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [quantity, setQuantity] = useState('0');
+  const [color, setColor] = useState('');
   const toast = useToast();
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +49,7 @@ const Product = ({title, id}: {title: string; id: number}) => {
   }
   const handleAddingToCart = async () => {
     try {
-      const res = await addToCart(data);
+      const res = await addToCart(data, color, quantity);
       if (res) {
         toast.show({variant: 'subtle', description: 'המוצר הוסף לסל'});
       } else {
@@ -55,7 +58,7 @@ const Product = ({title, id}: {title: string; id: number}) => {
     } catch (error) {}
   };
   return (
-    <>
+    <KeyboardAvoidingView style={{flex: 1}}>
       <Header title={title} />
       {data &&
         data.map((item, index) => (
@@ -87,7 +90,24 @@ const Product = ({title, id}: {title: string; id: number}) => {
                 </HStack>
               </VStack>
               <Divider my="4" />
-              <VStack></VStack>
+              <VStack>
+                <FormControl>
+                  <FormControl.Label>נא להזין כמות</FormControl.Label>
+                  <Input
+                    onChangeText={value => setQuantity(value)}
+                    value={quantity.toString()}
+                    keyboardType="numeric"
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>צבע</FormControl.Label>
+                  <Input
+                    onChangeText={value => setColor(value)}
+                    value={color.toString()}
+                    keyboardType="numeric"
+                  />
+                </FormControl>
+              </VStack>
             </Box>
 
             <Button
@@ -101,7 +121,7 @@ const Product = ({title, id}: {title: string; id: number}) => {
             </Button>
           </View>
         ))}
-    </>
+    </KeyboardAvoidingView>
   );
 };
 

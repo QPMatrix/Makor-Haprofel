@@ -1,6 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const addToCart = async (item: any): Promise<boolean> => {
+export const addToCart = async (
+  item: any,
+  color: string,
+  quantity: string,
+): Promise<boolean> => {
   try {
     const existingCart = await AsyncStorage.getItem('cart');
     let cart = existingCart ? JSON.parse(existingCart) : [];
@@ -13,17 +17,20 @@ export const addToCart = async (item: any): Promise<boolean> => {
     }
 
     // Find the index of the item in the cart
-    //@ts-ignore
-    const itemIndex = cart.findIndex(cartItem => cartItem.id === item.id);
+
+    const itemIndex = cart.findIndex(
+      //@ts-ignore
+      cartItem => cartItem.id === item.id && cartItem.color === color,
+    );
 
     console.log('Item index:', itemIndex);
 
     if (itemIndex > -1) {
       // If the item exists in the cart, increment the quantity and update the kg6m and kgm values
-      cart[itemIndex].quantity += 1;
+      cart[itemIndex].quantity += quantity;
     } else {
       // If the item does not exist in the cart, add it with a quantity of 1
-      cart.push({...item, quantity: 1, kg6m: item.kg6m, kgm: item.kgm});
+      cart.push({...item, color, quantity, kg6m: item.kg6m, kgm: item.kgm});
     }
 
     console.log('Updated cart:', cart);
