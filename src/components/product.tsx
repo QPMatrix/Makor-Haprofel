@@ -20,12 +20,12 @@ import {
   VStack,
 } from 'native-base';
 import {addToCart} from '../services/cart';
+import {Platform} from 'react-native';
 
 const Product = ({title, id}: {title: string; id: number}) => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [quantity, setQuantity] = useState('0');
+  const [quantity, setQuantity] = useState('');
   const [color, setColor] = useState('');
   const toast = useToast();
   useEffect(() => {
@@ -58,11 +58,14 @@ const Product = ({title, id}: {title: string; id: number}) => {
     } catch (error) {}
   };
   return (
-    <KeyboardAvoidingView style={{flex: 1}}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 64}
+      style={{flex: 1}}>
       <Header title={title} />
       {data &&
         data.map((item, index) => (
-          <View key={index}>
+          <ScrollView key={index}>
             <Box alignItems="center" width="90%" alignSelf="center">
               <Image
                 source={{uri: item.image_url}}
@@ -98,8 +101,7 @@ const Product = ({title, id}: {title: string; id: number}) => {
                     value={quantity.toString()}
                     keyboardType="numeric"
                   />
-                </FormControl>
-                <FormControl>
+
                   <FormControl.Label>צבע</FormControl.Label>
                   <Input
                     onChangeText={value => setColor(value)}
@@ -119,7 +121,7 @@ const Product = ({title, id}: {title: string; id: number}) => {
               leftIcon={<AddIcon />}>
               הוסיף להזמנה
             </Button>
-          </View>
+          </ScrollView>
         ))}
     </KeyboardAvoidingView>
   );
